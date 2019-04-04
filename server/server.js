@@ -57,9 +57,11 @@ app.get('/todos', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-    console.log('App is Running on Port 3000');
-});
+if (!module.parent){
+    app.listen(1000, () => {
+        console.log('App is Running on Port 1000');
+    });
+}
 
 
 module.exports = {app};
