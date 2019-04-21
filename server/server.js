@@ -38,7 +38,7 @@ const {User} = require('./models/user');
 
 const app = express();
 const port = process.env.PORT;
-const {authenticate}=require('./middleware/authenticate');
+const {authenticate} = require('./middleware/authenticate');
 app.use(bodyParser.json());
 
 app.post('/todos', (req, res) => {
@@ -99,7 +99,7 @@ app.patch('/todos/:id', (req, res) => {
     let id = req.params.id;
     let body = _.pick(req.body, ['text', 'completed']);
     if (!ObjectID.isValid(id)) {
-        return rs.status(404).send();
+        return res.status(404).send();
     }
 
     if (_.isBoolean(body.completed) && body.completed) {
@@ -131,7 +131,7 @@ app.post('/users', (req, res) => {
 });
 
 
-app.get('/users/me',authenticate,(req, res) => {
+app.get('/users/me', authenticate, (req, res) => {
     res.send(req.user);
 });
 
