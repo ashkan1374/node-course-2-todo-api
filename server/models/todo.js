@@ -1,18 +1,22 @@
-let mongoose=require('mongoose');
-let Todo=mongoose.model('Todo',{
-    text:{
-        type:String,
-        required:true,
-        minLength:2,
-        trim:true
+let mongoose = require('mongoose');
+let Todo = mongoose.model('Todo', {
+    text: {
+        type: String,
+        required: true,
+        minLength: 2,
+        trim: true
     },
-    completed:{
+    completed: {
         type: Boolean,
-        default:false
+        default: false
     },
-    completedAt:{
-        type:Number,
+    completedAt: {
+        type: Number,
         default: null
+    },
+    _creator: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
     }
 });
-module.exports={Todo};
+module.exports = {Todo};
